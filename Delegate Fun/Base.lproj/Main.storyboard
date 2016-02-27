@@ -35,9 +35,13 @@
                             </textField>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7cK-Rj-Jpp">
                                 <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                                <connections>
+                                    <action selector="flipLock:" destination="BYZ-38-t0r" eventType="valueChanged" id="HH5-MI-693"/>
+                                </connections>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="7cK-Rj-Jpp" firstAttribute="leading" secondItem="3Wg-XE-OOH" secondAttribute="trailing" constant="8" id="360-Xs-U4x"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hob-vF-r3s" secondAttribute="trailing" id="Y7V-7Z-yLN"/>
@@ -99,13 +103,23 @@
                                 <include reference="qwt-A9-cNy"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="ye4-bR-gYT" appends="YES" id="j8W-XW-6k6"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="cashTextField" destination="2vW-7z-LQz" id="oaY-M4-0en"/>
+                        <outlet property="lock" destination="7cK-Rj-Jpp" id="wQq-4z-gtf"/>
+                        <outlet property="lockableTextField" destination="3Wg-XE-OOH" id="tgr-3D-OsH"/>
                         <outlet property="zipCodeTextField" destination="hob-vF-r3s" id="ZQ6-Vo-1jU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ye4-bR-gYT">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="BYZ-38-t0r" id="RRV-KA-aty"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="153" y="431"/>
         </scene>

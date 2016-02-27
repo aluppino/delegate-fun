@@ -8,10 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var zipCodeTextField: UITextField!
     @IBOutlet weak var cashTextField: UITextField!
+    @IBOutlet weak var lockableTextField: UITextField!
+    
+    @IBOutlet weak var lock: UISwitch!
     
     let zipCodeDelegate = ZipCodeTextFieldDelegate()
     let cashDelegate = CashTextFieldDelegate()
@@ -21,7 +24,25 @@ class ViewController: UIViewController {
         
         zipCodeTextField.delegate = zipCodeDelegate
         cashTextField.delegate = cashDelegate
+        lockableTextField.delegate = self
+    }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        if (lock.on) {
+            return true
+        } else {
+            return false
+        }
     }
 
+    @IBAction func flipLock(sender: UISwitch) {
+        if (!sender.on && lockableTextField.isFirstResponder()) {
+            dismissKeyboard(nil)
+        }
+    }
+    
+    @IBAction func dismissKeyboard(sender: AnyObject!) {
+        view.endEditing(true)
+    }
 }
 
